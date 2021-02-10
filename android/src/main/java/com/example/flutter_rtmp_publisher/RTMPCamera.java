@@ -1,38 +1,31 @@
 package com.example.flutter_rtmp_publisher;
 
+import android.util.Log;
+import android.util.Size;
+import android.view.TextureView;
+
+import com.pedro.rtplibrary.rtmp.RtmpCamera2;
+
+import net.ossrs.rtmp.ConnectCheckerRtmp;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-
 import io.flutter.plugin.common.PluginRegistry.Registrar;
-
-import android.view.TextureView;
-import android.util.Log;
-import android.view.Gravity;
-import android.widget.FrameLayout;
-import android.hardware.Camera;
-
-import java.lang.Object;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.function.Function;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import android.util.Size;
-
-import com.pedro.rtplibrary.rtmp.RtmpCamera1;
-import net.ossrs.rtmp.ConnectCheckerRtmp;
 
 public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
     static Registrar flutterRegistrar;
     final Integer id;
     final MethodChannel methodChannel;
 
-    RtmpCamera1 camera;
+    RtmpCamera2 camera;
     TextureView textureView;
 
     RTMPCamera(int id) {
@@ -45,7 +38,7 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
 
     void setView(TextureView textureView) {
         this.textureView = textureView;
-        this.camera = new RtmpCamera1(textureView, this);
+        this.camera = new RtmpCamera2(textureView, this);
         Log.i("RTMPCamera", "Create camera id = " + this.id.toString());
     }
 
@@ -103,10 +96,10 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
     public List<Map<String, Integer>> getResolutions(Object args) {
         List<Map<String, Integer>> list = new ArrayList<Map<String, Integer>>();
         if (this.camera != null) {
-            for (Camera.Size size : camera.getResolutionsBack()) {
+            for (Size size : camera.getResolutionsBack()) {
                 Map<String, Integer> map = new HashMap();
-                map.put("width", size.width);
-                map.put("height", size.height);
+                map.put("width", size.getWidth());
+                map.put("height", size.getHeight());
                 list.add(map);
             }
         } else {
@@ -126,7 +119,7 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
             Integer rotation = (Integer) map.get("rotation");
             Log.i("RTMPCamera",
                     String.format("%dx%d @%d %d %b %d", width, height, fps, bitrate, hardwareRotation, rotation));
-            return camera.prepareVideo(width, height, fps, bitrate, hardwareRotation, rotation);
+            return camera.prepareVideo(width, height, fps, bitrate, 2, rotation);
         } else {
             Log.e("RTMPCamera", "Camera without a textureView");
         }
@@ -236,6 +229,11 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
     @Override
     public void onConnectionFailedRtmp(final String reason) {
         Log.i("RTMP", "Connect failed.");
+    }
+
+    @Override
+    public void onNewBitrateRtmp(long bitrate) {
+        Log.i("RTMP", "new bitrate " + bitrate);
     }
 
     @Override
