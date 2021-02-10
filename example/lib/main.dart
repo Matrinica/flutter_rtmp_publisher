@@ -5,7 +5,10 @@ import 'package:flutter_rtmp_publisher/flutter_rtmp_publisher.dart';
 import 'language.dart';
 import 'Dart:async';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   final RTMPCamera cameraController = RTMPCamera();
