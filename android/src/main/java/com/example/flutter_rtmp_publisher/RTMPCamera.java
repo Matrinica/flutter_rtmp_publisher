@@ -2,9 +2,9 @@ package com.example.flutter_rtmp_publisher;
 
 import android.util.Log;
 import android.util.Size;
-import android.view.TextureView;
 
 import com.pedro.rtplibrary.rtmp.RtmpCamera2;
+import com.pedro.rtplibrary.view.OpenGlView;
 
 import net.ossrs.rtmp.ConnectCheckerRtmp;
 
@@ -26,7 +26,7 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
     final MethodChannel methodChannel;
 
     RtmpCamera2 camera;
-    TextureView textureView;
+    OpenGlView openGlView;
 
     RTMPCamera(int id) {
         this.id = id;
@@ -36,9 +36,9 @@ public class RTMPCamera implements MethodCallHandler, ConnectCheckerRtmp {
         methodChannel.setMethodCallHandler(this);
     }
 
-    void setView(TextureView textureView) {
-        this.textureView = textureView;
-        this.camera = new RtmpCamera2(textureView, this);
+    void setView(OpenGlView openGlView) {
+        this.openGlView = openGlView;
+        this.camera = new RtmpCamera2(openGlView, this);
         Log.i("RTMPCamera", "Create camera id = " + this.id.toString());
     }
 

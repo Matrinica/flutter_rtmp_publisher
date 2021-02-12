@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flutter_rtmp_publisher.iml" filepath="$PROJECT_DIR$/.idea/modules/flutter_rtmp_publisher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/encoder/flutter_rtmp_publisher.encoder.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/encoder/flutter_rtmp_publisher.encoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtmp/flutter_rtmp_publisher.rtmp.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtmp/flutter_rtmp_publisher.rtmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtplibrary/flutter_rtmp_publisher.rtplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtplibrary/flutter_rtmp_publisher.rtplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtsp/flutter_rtmp_publisher.rtsp.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/rtmp-rtsp-stream-client-java/rtsp/flutter_rtmp_publisher.rtsp.iml" />
+    </modules>
+  </component>
+</project>

@@ -13,7 +13,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final RTMPCamera cameraController = RTMPCamera();
   final StreamController<List<CameraSize>> streamController =
-      StreamController<List<CameraSize>>();
+      StreamController<List<CameraSize>>.broadcast();
 
   @override
   Widget build(BuildContext context) {
