@@ -2,7 +2,9 @@
 
 flutter plugin to publish rtmp data.
 
-**Only work on Android**, developing at branch `dev`, **the plugin can not use now!**
+Forked from https://github.com/OhYee/flutter_rtmp_publisher. I've migrated to Android Camera2 API and OpenGlView, which greatly improved the livestream frame rate. (from 15 to 30 fps)
+
+**Only work on Android**, 
 
 ## Getting Started
 
@@ -14,7 +16,7 @@ Use the following dependency block in your `pubspec.yaml` file.
 dependencies:
   flutter_rtmp_publisher:
     git:
-      url: git://github.com/OhYee/flutter_rtmp_publisher.git
+      url: git://github.com/Matrinica/flutter_rtmp_publisher.git
 ```
 
 ## Acknowledgement
